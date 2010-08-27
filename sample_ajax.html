@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Tweets for #HamOnt</title>
+<style type="text/css">
+div.tweet_container { float: right; width: 400px; font-size: 0.8em; border: 2px solid darkblue; padding: 8px; height: 600px; overflow-y: scroll; }
+div.tweet_container h3 { margin: 0; padding: 0; text-align: center; color: darkblue; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 2px solid darkblue; }
+div.tweet { clear: both; }
+div.tweetphoto { float:left; width: auto; margin: 0; padding: 0; }
+div.tweetphoto img { border: none; width: 48px; height: 48px; display: block; margin: 0; margin-bottom: 24px; margin-right: 8px; padding: 0; }
+div.tweetphoto a > img { border: 1px solid black; }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+keyword = 'HamOnt';
+$(document).ready(function(){
+    add_script(keyword);
+});
+
+function add_script(keyword) {
+    var script = '<script id="xss" type="text/javascript" src="http://search.twitter.com/search.json?q='+keyword+'">';
+    alert(script);
+    $('body').append(script);
+}
+
+function get_tweets(keyword) {
+    $.ajax({
+        url: 'http://search.twitter.com/search.json?q='+keyword,
+        cache: false,
+        dataType: 'json',
+        success: function(j, textStatus) {
+            alert('j = ' + j + '\ntextStatus = ' + textStatus);
+            var results = j.results;
+            output = [];
+            output.push('<h3>Recent #' + keyword + ' Tweets</h3>');
+            for (result in results) {
+                output.push('<div class="tweet">')
+                output.push(' <div class="tweetphoto">')
+                output.push(' <a href="http://twitter.com/' + result['from_user'] + '">')
+                output.push(' <img src="' + result['profile_image_url'] + '" alt="' + result['from_user'] + '" title="' + result['from_user'] + '">')
+                output.push(' </a>')
+                output.push(' </div>')
+                output.push(' <div class="tweetstatus">')
+                output.push(' ' + result['text'] + ' <em><a href="http://twitter.com/' + result['from_user'] + '/status/' + result['id'] + '">' + result['created_at'] + '</a></em>')
+                output.push(' </div>')
+                output.push('</div>')
+            }
+            output.push('<div class="tweet"><a href="http://twitter.com/#search?q='+keyword+'">Visit Twitter search page</a></div>');
+            $('#tweet_container_hamont').html(output.join(''));
+        }, 
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert('Sorry, operation failed.\ntextStatus: '+textStatus+'\nerrorThrown: '+errorThrown);
+        }
+    });
+}
+
+</script>
+</head>
+<body>
+<div class="tweet_container" id="tweet_container_hamont"></div>
+
+</body>
+</html>
