@@ -24,15 +24,20 @@ KeywordTweets is a simple script (with versions written in Python and Javascript
 
 ##Using KeywordTweets
 
-Save this file in your PATH. (Enable executing as a script if you're on *Nix.) Import it into your program, and call the get_tweets() method (default keyword is "HamOnt").
+Save this file in your PATH. (Enable executing as a script if you're on *Nix.)
+
+Import it into your program, and call the get_tweets() method, passing in the keyword you want to search.
+
+You can also call the make_page() method, passing in the keyword and the output from get_tweets(), to generate a simple page.
 
 Example:
 
     import keywordtweets
-    tweets = keywordtweets.get_tweets('apples')
+    keyword = 'apples' # really interested in apples
+    tweets = keywordtweets.get_tweets(keyword)
     # generates an HTML div of recent tweets featuring the word 'apples'
 
-    fullpage = keywordtweets.make_page(tweets)
+    fullpage = keywordtweets.make_page(keyword, tweets)
     # generates a basic HTML page that includes your tweets div
 
 That's is, really.
