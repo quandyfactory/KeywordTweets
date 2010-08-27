@@ -24,7 +24,7 @@ def get_tweets(keyword):
     jsonblob = json.loads(blob)
     return jsonblob
 
-def format_tweets(jsonblob):
+def format_tweets(keyword, jsonblob):
     """
     Takes the JSON object with the recent tweets and formats it into HTML.
     """
