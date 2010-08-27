@@ -12,20 +12,22 @@ div.tweetphoto a > img { border: 1px solid black; }
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript">
+
 keyword = 'HamOnt';
+url = 'http://yourdomain.com/path/to/json/file'
+// Javascript security prevents AJAX requests from connecting to a different server than the one
+// serving the HTML page. You need to create a URL on your web server that polls twitter and
+// delivers the resulting JSON object in the HTTP response to the client.
+
 $(document).ready(function(){
-    add_script(keyword);
+    get_tweets(keyword, url);
 });
 
-function add_script(keyword) {
-    var script = '<script id="xss" type="text/javascript" src="http://search.twitter.com/search.json?q='+keyword+'">';
-    alert(script);
-    $('body').append(script);
-}
 
-function get_tweets(keyword) {
+
+function get_tweets(keyword, url) {
     $.ajax({
-        url: 'http://search.twitter.com/search.json?q='+keyword,
+        url: url
         cache: false,
         dataType: 'json',
         success: function(j, textStatus) {
@@ -47,7 +49,7 @@ function get_tweets(keyword) {
             }
             output.push('<div class="tweet"><a href="http://twitter.com/#search?q='+keyword+'">Visit Twitter search page</a></div>');
             $('#tweet_container_hamont').html(output.join(''));
-        }, 
+        },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert('Sorry, operation failed.\ntextStatus: '+textStatus+'\nerrorThrown: '+errorThrown);
         }
