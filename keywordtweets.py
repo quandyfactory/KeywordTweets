@@ -52,7 +52,7 @@ def make_page(html):
     addline('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">')
     addline('<html>')
     addline('<head>')
-    addline('<title>Tweets for #%s</title>' % (keyword))
+    addline('<title>Tweets for #%s</title>' % (html))
     addline('<style type="text/css">')
     addline('div.tweet_container { float: right; width: 400px; font-size: 0.8em; border: 2px solid darkblue; padding: 8px; height: 80%; overflow-y: scroll; }')
     addline('div.tweet_container h3 { margin: 0; padding: 0; text-align: center; color: darkblue; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 2px solid darkblue; }')
