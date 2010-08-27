@@ -34,7 +34,11 @@ Example:
 
     import keywordtweets
     keyword = 'apples' # really interested in apples
+
     tweets = keywordtweets.get_tweets(keyword)
+    # returns a JSON object of tweets
+
+    markup = keywordtweets.format_tweets(keyword, tweets)
     # generates an HTML div of recent tweets featuring the word 'apples'
 
     fullpage = keywordtweets.make_page(keyword, tweets)
