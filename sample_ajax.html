@@ -31,19 +31,18 @@ function get_tweets(keyword, url) {
         cache: false,
         dataType: 'json',
         success: function(j, textStatus) {
-            alert('j = ' + j + '\ntextStatus = ' + textStatus);
             var results = j.results;
             output = [];
             output.push('<h3>Recent #' + keyword + ' Tweets</h3>');
-            for (result in results) {
+            for (var i=0;i<results.length;i++) {
                 output.push('<div class="tweet">')
                 output.push(' <div class="tweetphoto">')
-                output.push(' <a href="http://twitter.com/' + result['from_user'] + '">')
-                output.push(' <img src="' + result['profile_image_url'] + '" alt="' + result['from_user'] + '" title="' + result['from_user'] + '">')
+                output.push(' <a href="http://twitter.com/' + results[i].from_user + '">')
+                output.push(' <img src="' + results[i].profile_image_url + '" alt="' + results[i].from_user + '" title="' + results[i].from_user + '">')
                 output.push(' </a>')
                 output.push(' </div>')
                 output.push(' <div class="tweetstatus">')
-                output.push(' ' + result['text'] + ' <em><a href="http://twitter.com/' + result['from_user'] + '/status/' + result['id'] + '">' + result['created_at'] + '</a></em>')
+                output.push(' ' + results[i].text + ' <em><a href="http://twitter.com/' + results[i].from_user + '/status/' + results[i].id + '">' + results[i].created_at + '</a></em>')
                 output.push(' </div>')
                 output.push('</div>')
             }
