@@ -27,7 +27,7 @@ $(document).ready(function(){
 
 function get_tweets(keyword, url) {
     $.ajax({
-        url: url
+        url: url,
         cache: false,
         dataType: 'json',
         success: function(j, textStatus) {
