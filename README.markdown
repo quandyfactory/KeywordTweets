@@ -1,6 +1,6 @@
 ##KeywordTweets
 
-KeywordTweets is a simple script (with versions written in Python and Javascript) that returns recent tweets with a given keyword.
+KeywordTweets is a simple script that returns recent tweets with a given keyword. Includes Python server code and Javascript Ajax script (using jQuery) for the client.
 
 ###Author
 
